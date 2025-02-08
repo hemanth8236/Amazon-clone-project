@@ -26,7 +26,7 @@ products.forEach((product) =>{
           </div>
 
           <div class="product-price">
-            $${formatCurrency(matchingProduct.priceCents)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -62,7 +62,6 @@ products.forEach((product) =>{
 document.querySelector('.js-products-grid').innerHTML = productsHtml;
 
 export function updateCartQuantity(){
-  let cartQuantity = 0;
   cart.forEach((cartItem) =>{
     cartQuantity += cartItem.quantity;
   });
