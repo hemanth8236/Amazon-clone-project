@@ -1,9 +1,9 @@
 import {cart,removeFromCart,updateDeliveryOption} from '../../data/cart.js';
-import {products} from '../../data/products.js';
+import {products,getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryOptions} from '../../data/deliveryOptions.js';
+import {deliveryOptions,getDeliveryOption} from '../../data/deliveryOptions.js';
 
 hello();
 
@@ -20,24 +20,12 @@ export function renderOrderSummary(){
   cart.forEach((cartItem) =>{
     const productId = cartItem.productId;
 
-    let matchingProduct = '';
-    
-    products.forEach((product) => {
-      if(product.id === productId){
-        matchingProduct = product;
-      }
-    });
-
+    const matchingProduct = getProduct(productId);
   //console.log(matchingProduct);
 
-    const deliveryOptionID = cartItem.deliveryOptionId;
+    const deliveryOptionId = cartItem.deliveryOptionId;
 
-    let deliveryOption = '';
-    deliveryOptions.forEach((option) =>{
-      if(option.id === deliveryOptionID){
-        deliveryOption = option;
-      }
-    });
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
 
     const today = dayjs();
     const deliveryDate = today.add(
@@ -103,7 +91,7 @@ export function renderOrderSummary(){
       const priceString =deliveryOption.priceCents 
       === 0
       ? 'FREE' 
-      : `$${formatCurrency(deliveryOption.priceCents)}`;
+      : `${formatCurrency(deliveryOption.priceCents)}`;
       
       const isChecked = deliveryOption.id === 
       cartItem.deliveryOptionId;
@@ -158,6 +146,7 @@ export function renderOrderSummary(){
       const {productId,deliveryOptionId} = element.dataset; // short hand property
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      
     });
   });
 }
