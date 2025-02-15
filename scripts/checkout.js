@@ -5,34 +5,54 @@ import { loadCart } from "../data/cart.js";
 //import '../data/cart-class.js';
 // import '../data/backend-practise.js';
 
-async function loadPage(){
-  // console.log('load page');
-  try{
+// async function loadPage(){
+//   // console.log('load page');
+//   try{
+//     // throw 'error1';
+
+//     await loadProductsFetch();
+
+//     const value = await new Promise((resolve, reject) =>{
+//       // throw 'error2';
+//       loadCart(() =>{
+//         //reject('error3');
+//         resolve('value3');
+//       });
+//     });
+
+//   } catch(error){
+//     console.log(error);
+//     console.log('Unexpected error in load page function. Please try again later');
+//   }
+
+//   renderOrderSummary();
+//   renderPaymentSummary();
+
+// }
+// loadPage();
+
+async function loadPage() {
+  try {
     // throw 'error1';
 
     await loadProductsFetch();
 
-    const value = await new Promise((resolve, reject) =>{
+    const value = await new Promise((resolve, reject) => {
       // throw 'error2';
-      loadCart(() =>{
-        //reject('error3');
+      loadCart(() => {
+        // reject('error3');
         resolve('value3');
       });
     });
 
-  } catch(error){
-    console.log(error);
-    console.log('Unexpected error in load page function. Please try again later');
+  } catch (error) {
+    console.log('Unexpected error. Please try again later.');
   }
-
- 
 
   renderOrderSummary();
   renderPaymentSummary();
-
 }
 loadPage();
-
 /*
 Promise.all([
   loadProductsFetch(),
