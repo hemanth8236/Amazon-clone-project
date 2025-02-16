@@ -72,28 +72,46 @@ export function renderPaymentSummary(){
   document.querySelector('.js-payment-summary')
     .innerHTML = paymentSummaryHTML;
 
-  document.querySelector('.js-place-order')
-  .addEventListener('click', async () => {
-    try {
-      const response = await fetch('https://supersimplebackend.dev/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          cart: cart
-        })
-      });
+    const placeOrderButton = document.querySelector('.js-place-order');
 
-      const order = await response.json();
-      addOrder(order);
-
-    } catch (error) {
-      console.log(error);
+    function updatePlaceOrderButton() {
+      if (cart.length === 0) {
+        placeOrderButton.disabled = true; 
+        placeOrderButton.classList.add('disabled'); // Optional: Add a class for styling
+      } else {
+        placeOrderButton.disabled = false;
+        placeOrderButton.classList.remove('disabled');
+      }
     }
-   
-    // Extra feature: make the cart empty after creating an order.
-    resetCart();
-    window.location.href = 'orders.html';
-  });
+    console.log(placeOrderButton)
+    
+    // Call this function initially to set the button state
+    updatePlaceOrderButton();
+    
+    // Add event listener
+    placeOrderButton.addEventListener('click', async () => {
+      if (cart.length === 0) return; // Prevents clicking if cart is empty
+    
+      try {
+        const response = await fetch('https://supersimplebackend.dev/orders', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ cart })
+        });
+    
+        const order = await response.json();
+        addOrder(order);
+        
+        // Empty the cart and update the button state
+        resetCart();
+        updatePlaceOrderButton();
+    
+        window.location.href = 'orders.html';
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    
 }

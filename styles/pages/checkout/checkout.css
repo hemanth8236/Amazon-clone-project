@@ -215,3 +215,7 @@
   text-decoration: none;
   margin-top: 10px;
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

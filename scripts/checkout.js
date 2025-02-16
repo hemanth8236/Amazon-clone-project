@@ -5,31 +5,6 @@ import { cart,loadCart} from "../data/cart.js";
 //import '../data/cart-class.js';
 // import '../data/backend-practise.js';
 
-// async function loadPage(){
-//   // console.log('load page');
-//   try{
-//     // throw 'error1';
-
-//     await loadProductsFetch();
-
-//     const value = await new Promise((resolve, reject) =>{
-//       // throw 'error2';
-//       loadCart(() =>{
-//         //reject('error3');
-//         resolve('value3');
-//       });
-//     });
-
-//   } catch(error){
-//     console.log(error);
-//     console.log('Unexpected error in load page function. Please try again later');
-//   }
-
-//   renderOrderSummary();
-//   renderPaymentSummary();
-
-// }
-// loadPage();
 
 async function loadPage() {
   try {
