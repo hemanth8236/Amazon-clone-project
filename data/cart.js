@@ -101,3 +101,9 @@ export function loadCart(fun){
   xhr.send();
 }
 
+// Extra feature: make the cart empty after creating an order.
+export function resetCart() {
+  cart = [];
+  saveToStorage();
+}
+
