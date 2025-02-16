@@ -76,7 +76,7 @@ function renderProductsGrid(){
 
     document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
   }
-  loadCartQuantity();
+  updateCartQuantity();
 
   document.querySelectorAll('.js-add-to-cart').forEach((button) =>{
   button.addEventListener('click', () =>{
@@ -89,13 +89,13 @@ function renderProductsGrid(){
   });
 
   
-  function loadCartQuantity (){
+  // function loadCartQuantity (){
     
-    let storedQuantity = localStorage.getItem('cartQuantity');
+  //   let storedQuantity = localStorage.getItem('cartQuantity');
   
-    if (storedQuantity !== null) {
-      document.querySelector('.js-cart-quantity').innerHTML = storedQuantity;
-    }
-  }
+  //   if (storedQuantity !== null) {
+  //     document.querySelector('.js-cart-quantity').innerHTML = storedQuantity;
+  //   }
+  // }
   
 }
