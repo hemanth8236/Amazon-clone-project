@@ -16,8 +16,19 @@ function renderProductsGrid(){
   // filter the products that match the search.
   if (search) {
     filteredProducts = products.filter((product) => {
-      return product.name.includes(search);
+      let matchingKeyword = false;
+
+      product.keywords.forEach((keyword) =>{
+        if(keyword.toLowerCase().includes(search
+          .toLowerCase())){
+          matchingKeyword = true;
+        }
+      });
+    
+      return matchingKeyword ||
+      product.name.toLowerCase().includes(search.toLowerCase());
     });
+    document.querySelector('.js-search-bar').value = search;
   }
 
   filteredProducts.forEach((product) => {
@@ -96,15 +107,26 @@ function renderProductsGrid(){
 
     addtocart(productId);
     updateCartQuantity();
-
    });
   });
 
   document.querySelector('.js-search-button')
     .addEventListener('click',() =>{
+    callSearch();
+  });
+  
+
+  function callSearch(){
     const search = document.querySelector('.js-search-bar').value;
     window.location.href = `amazon.html?search=${search}`;
-  });
+  }
+  
+  document.querySelector('.js-search-bar')
+    .addEventListener('keydown',(event)=>{
+      if(event.key === 'Enter'){
+        callSearch();
+      }
+    });
 
   
   // function loadCartQuantity (){
