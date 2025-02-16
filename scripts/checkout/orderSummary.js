@@ -5,6 +5,7 @@ import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions,getDeliveryOption} from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+import { updateCheckoutCartQuantity } from '../checkout.js';
 
 
 
@@ -139,6 +140,7 @@ export function renderOrderSummary(){
       }
       
       renderPaymentSummary();
+      updateCheckoutCartQuantity();
     });
   });
 
