@@ -7,9 +7,10 @@ async function loadPage() {
   await loadProductsFetch();
 
   let ordersHTML = '';
-
+ 
   orders.forEach((order) => {
     const orderTimeString = dayjs(order.orderTime).format('MMMM D');
+    
 
     ordersHTML += `
       <div class="order-container">
@@ -78,5 +79,7 @@ async function loadPage() {
 
 
 document.querySelector('.js-orders-grid').innerHTML = ordersHTML;
+
+
 }
 loadPage();

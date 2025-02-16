@@ -81,7 +81,7 @@ export function loadProductsFetch(){
   ).then((response) =>{
    return response.json();
   }).then((productsData) => {
-    console.log(productsData)
+    //console.log(productsData)
     products =  productsData.map((productDetails) => {
       if(productDetails.type  === 'clothing'){
         return new Clothing(productDetails);
@@ -89,7 +89,7 @@ export function loadProductsFetch(){
       return new Product(productDetails);
     });
 
-    console.log('load products');
+   // console.log('load products');
   }).catch((error) =>{
     console.log('Unexpected error. Please try again later');
   });
@@ -113,7 +113,7 @@ export function loadProducts(fun){
     });
 
 
-    console.log('load products');
+    //console.log('load products');
     fun();
   });
 

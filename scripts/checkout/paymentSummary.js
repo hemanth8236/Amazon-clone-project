@@ -91,6 +91,7 @@ export function renderPaymentSummary(){
     } catch (error) {
       console.log(error);
     }
+   
 
     window.location.href = 'orders.html';
   });
