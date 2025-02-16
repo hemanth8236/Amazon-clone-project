@@ -81,6 +81,7 @@ export function loadProductsFetch(){
   ).then((response) =>{
    return response.json();
   }).then((productsData) => {
+    console.log(productsData)
     products =  productsData.map((productDetails) => {
       if(productDetails.type  === 'clothing'){
         return new Clothing(productDetails);

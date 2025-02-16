@@ -39,10 +39,10 @@ async function loadPage() {
 
     const value = await new Promise((resolve, reject) => {
       // throw 'error2';
-      loadCart(() => {
+     // loadCart(() => {
         // reject('error3');
         resolve('value3');
-      });
+     // });
     });
 
   } catch (error) {
