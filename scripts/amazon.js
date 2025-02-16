@@ -104,6 +104,12 @@ function renderProductsGrid(){
   document.querySelectorAll('.js-add-to-cart').forEach((button) =>{
     button.addEventListener('click', () =>{
     const productId = button.dataset.productId;
+    const h1 = document.querySelector('.added-to-cart');
+    
+    h1.style.opacity = 1;
+    setTimeout(() => {
+      h1.style.opacity = 0;
+    }, 3000);
 
     addtocart(productId);
     updateCartQuantity();
