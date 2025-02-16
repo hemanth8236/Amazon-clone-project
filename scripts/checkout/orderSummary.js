@@ -120,6 +120,7 @@ export function renderOrderSummary(){
   }
 
   document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+  isCartEmpty();
 
   document.querySelectorAll('.js-delete-link').forEach((link) => {
     link.addEventListener('click', () => {
@@ -131,18 +132,24 @@ export function renderOrderSummary(){
 
       container.remove();
       
-      if(cart.length === 0){
-        document.querySelector('.js-order-summary').innerHTML = `
-          <div class="empty-cart-message">
-            Your cart is empty
-          </div>
-        `;
-      }
-      
+
+      isCartEmpty(); 
       renderPaymentSummary();
       updateCheckoutCartQuantity();
     });
   });
+  function isCartEmpty(){
+    if(cart.length === 0){
+      document.querySelector('.js-order-summary').innerHTML = `
+        <div class="empty-cart-message">
+          Your cart is empty
+        </div>
+        <a class="button-primary view-products-link" href="amazon.html" >
+        View products
+      </a>
+      `;
+    }
+  }
 
   document.querySelectorAll('.js-delivery-option').forEach((element) =>{
     element.addEventListener('click', () =>{
@@ -150,7 +157,6 @@ export function renderOrderSummary(){
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
       renderPaymentSummary();
-      
     });
   });
 }
